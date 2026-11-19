@@ -1,0 +1,23 @@
+{
+  "name": "mysdr",
+  "version": "1.0.0",
+  "description": "mySDR is the GTM layer for AI agents: find and enrich people and companies, watch buying signals, and run LinkedIn and email outreach from your assistant. Connects to the hosted mySDR MCP server with OAuth (sign in and click Allow; no API key).",
+  "author": {
+    "name": "LVDP CommV (mySDR)",
+    "email": "louis@mysdr.app"
+  },
+  "homepage": "https://mysdr.app",
+  "repository": "https://github.com/louisvandeputte-sketch/mysdr-plugin",
+  "license": "MIT",
+  "keywords": [
+    "sales",
+    "gtm",
+    "outreach",
+    "linkedin",
+    "lead-generation",
+    "enrichment",
+    "crm",
+    "mcp"
+  ],
+  "logo": "assets/logo.svg"
+}

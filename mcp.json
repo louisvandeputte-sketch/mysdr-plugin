@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "mysdr": {
+      "url": "https://mysdr.app/api/mcp"
+    }
+  }
+}
