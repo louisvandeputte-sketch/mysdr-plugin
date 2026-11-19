@@ -223,7 +223,7 @@ Tools whose titles include “(spends credits)” charge the workspace. `get_usa
 | Server name | 100 characters | `mySDR` |
 | One-liner | 200 characters | The short description in §2 (179 characters) |
 | Description | 2,000 characters | The long description in §2 (1,392 characters). Anthropic cannot edit this after you write it in the portal. |
-| Categories | 1–5 | **Sales & marketing** (primary), **Productivity**. Optional third: **Data analytics**. See slugs below. Do not invent names such as “Sales” or “CRM” — those are not directory categories. |
+| Categories | 1–5 | **Sales & marketing** (primary), **Productivity**. Decided 19 Nov: no Data analytics. See slugs below. Do not invent names such as “Sales” or “CRM” — those are not directory categories. |
 | Documentation URL | — | https://mysdr.app/docs |
 | Privacy policy URL | — | https://mysdr.app/en/privacy |
 | Support contact | — | `support@mysdr.app` (and, if a URL is accepted, https://mysdr.app/en/support) |
@@ -334,7 +334,7 @@ This is a **publisher application + first plugin repository** form, not a multi-
 | Organization name | `displayName` | `LVDP CommV` | Required. Placeholder on the form: “Acme Labs”. |
 | Organization handle | `publisherName` | `mysdr` | Required. Hint: “Unique namespace (kebab-case, e.g. @acme-labs)”. Must match kebab-case with optional periods. Uniqueness is checked at submit. Confirm `mysdr` is still free when submitting. |
 | Contact email | `contactEmail` | `louis.vandeputte@gmail.com` | Required, must be a valid email. Placeholder: `email@acme.com` (no domain-mail requirement in the script). If Louis prefers a monitored company address, swap it before submit (open item). |
-| Logotype URL | `logoUrl` | After the package is on `main`: `https://raw.githubusercontent.com/louisvandeputte-sketch/mysdr-plugin/main/assets/logo.svg` | Required; must be `http` or `https`. Hint: “Link to your logo. 1:1 SVG or PNG with background plate.” **Gap:** the current `assets/logo.svg` / `assets/logo.png` are a 512×512 gradient circle on a **transparent** background (corners are fully transparent). That is 1:1 SVG/PNG, but it is not a background plate and can disappear on Cursor’s dark UI. Recommended: add a 512×512 plate asset (opaque square, e.g. white or `#14161A`, with the existing mark centred) as `assets/logo-plate.png` or `assets/logo-plate.svg`, commit it, and use that raw URL instead. Until a plate file exists, do not treat this field as ready. |
+| Logotype URL | `logoUrl` | After the package is on `main`: `https://raw.githubusercontent.com/louisvandeputte-sketch/mysdr-plugin/main/assets/logo-plate.png` | Required; must be `http` or `https`. Hint: “Link to your logo. 1:1 SVG or PNG with background plate.” **Resolved 19 Nov:** `assets/logo-plate.png` / `assets/logo-plate.svg` (512×512, opaque white plate, same gradient mark) added; use the PNG URL. Original note: the current `assets/logo.svg` / `assets/logo.png` are a 512×512 gradient circle on a **transparent** background (corners are fully transparent). That is 1:1 SVG/PNG, but it is not a background plate and can disappear on Cursor’s dark UI. Recommended: add a 512×512 plate asset (opaque square, e.g. white or `#14161A`, with the existing mark centred) as `assets/logo-plate.png` or `assets/logo-plate.svg`, commit it, and use that raw URL instead. Until a plate file exists, do not treat this field as ready. |
 | Description | `description` | The short description in §2 | Optional in the script (an empty value is omitted), but should be filled. Placeholder: “Briefly describe what your plugin does and how it helps users.” |
 | GitHub repository | `repositoryUrl` | `https://github.com/louisvandeputte-sketch/mysdr-plugin` | Required. Must match `https://github.com/org/repo`. The repository is public. It must contain the plugin package (`.cursor-plugin/plugin.json`, `mcp.json`, logo, README, LICENSE, skills) on `main` before submit. At repo creation it was empty — push the local package first. |
 | Owner | `owner` | Locked to Louis’s signed-in Cursor account | Disabled. Not editable. |
@@ -430,7 +430,7 @@ Placeholder instructions to send later, only when a reviewer emails:
 | Requirement | Source | Status on 19 Nov 2026 |
 | --- | --- | --- |
 | Public GitHub repo containing the plugin package on `main` | Cursor docs + form | Repo URL exists and is public, but it was **empty** at creation (no commits, no README, no LICENSE). The package lives locally until it is pushed. |
-| Cursor logotype: 1:1 SVG or PNG **with background plate** | Cursor publish form hint | **Not met** by `assets/logo.svg` / `assets/logo.png` (transparent corners, no plate). |
+| Cursor logotype: 1:1 SVG or PNG **with background plate** | Cursor publish form hint | **Met** by `assets/logo-plate.png` (opaque white plate, added 19 Nov). |
 | Standard testing account with sample data | Anthropic Software Directory Policy §3.D; also useful for Cursor review | **Not created yet.** |
 | “I have tested every tool” confirmation | Claude portal, Test & launch; Cursor checklist “tested locally” | **Not signed off.** |
 | Response size / frugality measured in production | Anthropic policy §5.B (frugal token use) | Read tools paginate; sizes were not re-measured in this preparation. Not a known blocker, but not proven for every tool. |
