@@ -10,8 +10,8 @@ Prepared 19 Nov 2026. ChatGPT / OpenAI plugin directory: **parked** (Louis, 19 N
 | Legal entity / org name | LVDP CommV (VAT BE1008270260) |
 | Product name | mySDR |
 | Handle / slug | `mysdr` (permanent once published on Claude) |
-| Contact email (review updates) | louis@mysdr.app (suggested) |
-| Support contact | support@mysdr.app (listed in the terms). `https://mysdr.app/support` is a 404 today; see issue #1508 |
+| Contact email (review updates) | support@mysdr.app (decided by Louis, 19 Nov 2026) |
+| Support contact | support@mysdr.app (listed in the terms). Canonical page: https://mysdr.app/en/support. https://mysdr.app/support redirects there (308, PR #1514, live since 19 Nov 2026 16:29 Europe/Brussels). |
 | Website | https://mysdr.app |
 | Documentation | https://mysdr.app/docs (start: https://mysdr.app/docs/getting-started/quickstart) |
 | Privacy policy | https://mysdr.app/en/privacy (200; `/privacy` redirects here) |
@@ -67,7 +67,7 @@ The publish form loads behind a Cursor login, so the exact fields could not be r
 | Repository URL | https://github.com/louisvandeputte-sketch/mysdr-plugin |
 | Plugin name (manifest `name`) | `mysdr` |
 | Publisher / org | LVDP CommV |
-| Contact email | louis@mysdr.app |
+| Contact email | support@mysdr.app |
 | Description | short description above |
 | Keywords | sales, gtm, outreach, linkedin, lead-generation, enrichment, crm, mcp |
 | Logo | `assets/logo.svg` (relative path in manifest) |
@@ -98,7 +98,7 @@ Sources: claude.com/docs/connectors/building/submission and /review-criteria. An
 | 2. Tools | Syncs automatically. 69 tools; all have `title` + `readOnlyHint`/`destructiveHint`. Fix #1508 first (destructive hints on modify/send tools). |
 | 3. Listing | Name: `mySDR` · One-liner: short description · Description: long description · Categories: Sales, Productivity · Docs URL: https://mysdr.app/docs · Privacy: https://mysdr.app/en/privacy · Support: support@mysdr.app · Icon: `assets/logo.png` · Slug: `mysdr` |
 | 4. Use cases | Prospecting (find + enrich), list building in Leads/Companies tables, signal-based lead discovery, LinkedIn/email outreach with pre-send checks, reply handling. Prerequisites: mySDR account (free signup); LinkedIn connected in mySDR for LinkedIn actions; credits for search/enrichment. Reads and writes. |
-| 5. Company | LVDP CommV · https://mysdr.app · primary contact louis@mysdr.app |
+| 5. Company | LVDP CommV · https://mysdr.app · primary contact support@mysdr.app |
 | 6. Authentication | Required · OAuth (Dynamic Client Registration; no Anthropic-held client needed) |
 | 7. Data handling | Own first-party API (mySDR), which uses licensed data providers for enrichment; no personal health data; no sponsored content |
 | 8. Test & launch | Confirm every tool was run via MCP Inspector and as a custom connector in Claude. No credentials in the portal. |
@@ -118,7 +118,7 @@ Requirement status (audit 19 Nov 2026):
 | Frugal responses | partial | Read tools paginate (`limit` max 50–500); sizes not measured yet (#1508) |
 | Public docs page | ok | https://mysdr.app/docs |
 | Privacy policy URL | ok | https://mysdr.app/en/privacy |
-| Support contact | ok (email) | support@mysdr.app; no /support page |
+| Support contact | ok | support@mysdr.app; https://mysdr.app/en/support (canonical); `/support` redirects there |
 | Icon | ok | 512×512 square |
 | CORS on MCP endpoint | missing | Needed for browser clients like MCP Inspector web (#1509) |
 

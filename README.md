@@ -67,7 +67,7 @@ Tools marked "(spends credits)" use mySDR credits; `get_usage` shows your balanc
 - Docs: https://mysdr.app/docs
 - Privacy policy: https://mysdr.app/en/privacy
 - Terms: https://mysdr.app/en/terms
-- Support: support@mysdr.app
+- Support: https://mysdr.app/en/support (canonical; `https://mysdr.app/support` redirects here) or support@mysdr.app
 
 ## License
 

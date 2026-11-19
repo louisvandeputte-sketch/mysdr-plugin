@@ -61,7 +61,7 @@ curl on 19 Nov 2026, Europe/Brussels. Prefer the final 200 URL in listings.
 | Documentation | https://mysdr.app/docs | 200. Start / connect guide: https://mysdr.app/docs/getting-started/quickstart (200). Markdown index: https://mysdr.app/docs.md (200) |
 | Privacy policy | https://mysdr.app/en/privacy | 200. https://mysdr.app/privacy redirects here. Last updated 28 Oct 2026. Contact on the page: `privacy@mysdr.app`. Covers collection, use, third-party sources, retention, and contact. |
 | Terms of service | https://mysdr.app/en/terms | 200. https://mysdr.app/terms redirects here. Support address on the page: `support@mysdr.app` |
-| Support page | https://mysdr.app/en/support | 200, last updated 19 Nov 2026. Mailto: `support@mysdr.app`. **Do not use** https://mysdr.app/support (404). |
+| Support page | https://mysdr.app/en/support | 200, last updated 19 Nov 2026. Mailto: `support@mysdr.app`. Canonical URL. https://mysdr.app/support redirects here (308, PR #1514, live since 19 Nov 2026 16:29 Europe/Brussels). |
 | Support contact (email) | support@mysdr.app | Listed on /en/support and /en/terms. “We read it on business days and reply from that address.” |
 | DPA (related, not a form field) | https://mysdr.app/en/dpa | 200 |
 | Do not sell (related) | https://mysdr.app/en/do-not-sell | 200 |
@@ -71,8 +71,8 @@ curl on 19 Nov 2026, Europe/Brussels. Prefer the final 200 URL in listings.
 | Transport | Streamable HTTP (stateless POST) | Matches Anthropic policy: remote servers should support Streamable HTTP. |
 | Auth | OAuth 2.1 / MCP authorization: discovery from the 401, AS metadata, Dynamic Client Registration, Client ID Metadata Documents (`client_id_metadata_document_supported: true`), PKCE S256 only, `resource` (RFC 8707), public clients (`token_endpoint_auth_methods_supported` includes `none`), refresh tokens. No API key in the client config. | `https://mysdr.app/.well-known/oauth-authorization-server` and `https://mysdr.app/.well-known/oauth-protected-resource/api/mcp` both 200. |
 | Plugin repository | https://github.com/louisvandeputte-sketch/mysdr-plugin | Public repo, created 19 Nov 2026 16:03 Europe/Brussels. Empty at creation (size 0, no commits, no README, no LICENSE). Local package is this repo. |
-| Primary review contact | louis.vandeputte@gmail.com | Default requested for these forms. See open items if a form prefers a domain address. |
-| Domain addresses already on the public site | support@mysdr.app, privacy@mysdr.app | Do not invent other mysdr.app mailboxes in the form without Louis confirming they are monitored. The package `plugin.json` currently has `author.email` `louis@mysdr.app` — confirm before relying on it. |
+| Primary review contact | support@mysdr.app | Decided by Louis on 19 Nov 2026: use this address everywhere a form asks for a contact, review, or support email. |
+| Domain addresses already on the public site | support@mysdr.app, privacy@mysdr.app | Do not invent other mysdr.app mailboxes in the form without Louis confirming they are monitored. The package `plugin.json` `author.email` is `support@mysdr.app` (same 19 Nov 2026 decision). |
 | Icon / logo in the package | `assets/logo.svg` (512×512 SVG, gradient circle) and `assets/logo.png` (512×512 PNG, RGBA). Wordmark: `assets/wordmark.svg` (not square). | See the Cursor plate gap in §7. |
 | License | MIT, © 2026 LVDP CommV | `LICENSE`. Cursor Publisher Terms §3.3 allow permissive licenses (MIT, BSD, Apache 2.0) and forbid GPL/AGPL/LGPL. Listing is free; the plugin must remain free on the Marketplace (Terms §3.1). |
 
@@ -258,9 +258,9 @@ mySDR is not an MCP App (no interactive UI), so carousel screenshots are not req
 | --- | --- |
 | Company name | LVDP CommV |
 | Company website | https://mysdr.app |
-| Primary contact for review updates | louis.vandeputte@gmail.com |
+| Primary contact for review updates | support@mysdr.app |
 
-If the portal insists on a company-domain mailbox, use one Louis confirms is monitored (open item). Do not put secrets in this field.
+Decided by Louis on 19 Nov 2026: use `support@mysdr.app`. Do not put secrets in this field.
 
 ### 3.6 Authentication
 
@@ -325,7 +325,7 @@ Official docs (https://claude.com/docs/directory/publish): if you also want the 
 
 This is a **publisher application + first plugin repository** form, not a multi-step MCP wizard. Plugin name, MCP URL, skills, and keywords come from the public repo (`/.cursor-plugin/plugin.json`, `mcp.json`, `skills/`, `README.md`). Clicking **Submit Application** acknowledges the [Publisher Terms](https://cursor.com/marketplace-publisher-terms). There is no fee. The plugin must remain free on the Marketplace. License must stay permissive (MIT is already in the package).
 
-**Who submits:** Louis, signed in to the Cursor account that should own the listing. The **Owner** field is disabled and locked to that account (“Submitting as an individual.” or “Submitting as your team.”). There is no in-form control to switch an individual account to a company; the company name goes in Organization name and in `plugin.json` `author.name` (`LVDP CommV (mySDR)`).
+**Who submits:** Louis, signed in as `louis@mysdr.app` (decided by Louis on 19 Nov 2026). The **Owner** field is disabled and locked to that login afterwards (“Submitting as an individual.” or “Submitting as your team.”). There is no in-form control to switch an individual account to a company; the company name goes in Organization name and in `plugin.json` `author.name` (`LVDP CommV (mySDR)`).
 
 ### 4.1 Form fields (live labels, 19 Nov 2026)
 
@@ -333,11 +333,11 @@ This is a **publisher application + first plugin repository** form, not a multi-
 | --- | --- | --- | --- |
 | Organization name | `displayName` | `LVDP CommV` | Required. Placeholder on the form: “Acme Labs”. |
 | Organization handle | `publisherName` | `mysdr` | Required. Hint: “Unique namespace (kebab-case, e.g. @acme-labs)”. Must match kebab-case with optional periods. Uniqueness is checked at submit. Confirm `mysdr` is still free when submitting. |
-| Contact email | `contactEmail` | `louis.vandeputte@gmail.com` | Required, must be a valid email. Placeholder: `email@acme.com` (no domain-mail requirement in the script). If Louis prefers a monitored company address, swap it before submit (open item). |
+| Contact email | `contactEmail` | `support@mysdr.app` | Required, must be a valid email. Placeholder: `email@acme.com` (no domain-mail requirement in the script). Decided by Louis on 19 Nov 2026: public contact for both listings is `support@mysdr.app`. |
 | Logotype URL | `logoUrl` | After the package is on `main`: `https://raw.githubusercontent.com/louisvandeputte-sketch/mysdr-plugin/main/assets/logo-plate.png` | Required; must be `http` or `https`. Hint: “Link to your logo. 1:1 SVG or PNG with background plate.” **Resolved 19 Nov:** `assets/logo-plate.png` / `assets/logo-plate.svg` (512×512, opaque white plate, same gradient mark) added; use the PNG URL. Original note: the current `assets/logo.svg` / `assets/logo.png` are a 512×512 gradient circle on a **transparent** background (corners are fully transparent). That is 1:1 SVG/PNG, but it is not a background plate and can disappear on Cursor’s dark UI. Recommended: add a 512×512 plate asset (opaque square, e.g. white or `#14161A`, with the existing mark centred) as `assets/logo-plate.png` or `assets/logo-plate.svg`, commit it, and use that raw URL instead. Until a plate file exists, do not treat this field as ready. |
 | Description | `description` | The short description in §2 | Optional in the script (an empty value is omitted), but should be filled. Placeholder: “Briefly describe what your plugin does and how it helps users.” |
 | GitHub repository | `repositoryUrl` | `https://github.com/louisvandeputte-sketch/mysdr-plugin` | Required. Must match `https://github.com/org/repo`. The repository is public. It must contain the plugin package (`.cursor-plugin/plugin.json`, `mcp.json`, logo, README, LICENSE, skills) on `main` before submit. At repo creation it was empty — push the local package first. |
-| Owner | `owner` | Locked to Louis’s signed-in Cursor account | Disabled. Not editable. |
+| Owner | `owner` | Locked to the signed-in Cursor account (`louis@mysdr.app`, decided 19 Nov 2026) | Disabled. Not editable. |
 | Website URL | `websiteUrl` | `https://mysdr.app` | Optional, but fill it. If present, must be `http` or `https`. |
 | Submit Application | button | **Louis clicks this.** | “By clicking Submit Application, you acknowledge and agree to the Publisher Terms.” Do not click during this preparation. |
 
@@ -348,7 +348,7 @@ This is a **publisher application + first plugin repository** form, not a multi-
 | Plugin `name` | `mysdr` (kebab-case) |
 | `display` / description | See `.cursor-plugin/plugin.json` |
 | Version | `1.0.0` |
-| Author | LVDP CommV (mySDR); email in the manifest is currently `louis@mysdr.app` |
+| Author | LVDP CommV (mySDR); email in the manifest is `support@mysdr.app` |
 | Homepage | https://mysdr.app |
 | Repository | https://github.com/louisvandeputte-sketch/mysdr-plugin |
 | License | MIT |
@@ -414,14 +414,14 @@ Placeholder instructions to send later, only when a reviewer emails:
 2. **Push / confirm `main` of https://github.com/louisvandeputte-sketch/mysdr-plugin** contains this package (README, LICENSE, manifest, skills, assets, this document). The repo existed but was empty at 16:03 Europe/Brussels on 19 Nov 2026. Cursor cannot be submitted until `main` has the package. (Local commits may already be ready; pushing needs Louis’s GitHub access if the box cannot push.)
 3. **Reviewer test org** — create it only after Louis’s yes (separate org, no MFA, bonus credits, fake LinkedIn, no outbound). Then send credentials only to a reviewer who asks, never commit them.
 4. **Cursor logotype with a background plate** — approve adding `assets/logo-plate.png` or `.svg` (512×512, opaque plate) and use that URL on the Cursor form. The current circle-on-transparent mark does not meet the form hint.
-5. **Contact email** — forms are filled here with `louis.vandeputte@gmail.com`. Confirm, or switch to a monitored domain mailbox. Note: `plugin.json` still has `louis@mysdr.app`; `support@mysdr.app` is the public support address.
+5. **Contact email** — **Decided by Louis on 19 Nov 2026:** use `support@mysdr.app` everywhere a form asks for a contact, review, or support email. `plugin.json` `author.email` is the same address.
 6. **Organization handle `mysdr`** — confirm it is still available on Cursor at submit time.
-7. **Cursor Owner account** — which Cursor login should own the listing (the Owner field cannot be edited on the form).
+7. **Cursor Owner account** — **Decided by Louis on 19 Nov 2026:** submit at https://cursor.com/marketplace/publish signed in as `louis@mysdr.app`. The Owner field is locked to that login afterwards.
 8. **Test sign-off** — run every tool as a custom connector in Claude (and locally in Cursor) before ticking Test & launch / submitting Cursor. Still outstanding.
 9. **Claude categories** — confirm Sales & marketing + Productivity, and whether to add Data analytics as a third.
 10. **Claude slug `mysdr`** — confirm; it is permanent after publish.
 11. **Optional Claude plugin bundle** — decide later whether to also submit the GitHub repo as a plugin, from the same Claude organization, and pair it with the connector.
-12. **README support URL** — README still lists only `support@mysdr.app`. Optional follow-up: add https://mysdr.app/en/support (the bare `/support` path is 404).
+12. **README support URL** — **Done (19 Nov 2026).** README lists https://mysdr.app/en/support (canonical) and `support@mysdr.app`. https://mysdr.app/support redirects (308) to `/en/support` since PR #1514 (deployed 19 Nov 2026, 16:29 Europe/Brussels).
 
 ---
 
@@ -434,7 +434,7 @@ Placeholder instructions to send later, only when a reviewer emails:
 | Standard testing account with sample data | Anthropic Software Directory Policy §3.D; also useful for Cursor review | **Not created yet.** |
 | “I have tested every tool” confirmation | Claude portal, Test & launch; Cursor checklist “tested locally” | **Not signed off.** |
 | Response size / frugality measured in production | Anthropic policy §5.B (frugal token use) | Read tools paginate; sizes were not re-measured in this preparation. Not a known blocker, but not proven for every tool. |
-| `https://mysdr.app/support` | Convenience | **404.** Use https://mysdr.app/en/support (200). |
+| `https://mysdr.app/support` | Convenience | **Met** since PR #1514 (deployed 19 Nov 2026, 16:29 Europe/Brussels): 308 to https://mysdr.app/en/support (canonical, 200). |
 
 Items that **do** meet the published requirements (re-checked 19 Nov 2026):
 
