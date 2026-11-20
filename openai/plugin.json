@@ -1,0 +1,105 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mysdr",
+  "version": "1.0.0",
+  "description": "mySDR is the GTM layer for AI agents: find and enrich people and companies, watch buying signals, and run LinkedIn and email outreach from your assistant.",
+  "author": {
+    "name": "LVDP CommV (mySDR)",
+    "email": "support@mysdr.app",
+    "url": "https://mysdr.app"
+  },
+  "homepage": "https://mysdr.app",
+  "repository": "https://github.com/louisvandeputte-sketch/mysdr-plugin",
+  "license": "MIT",
+  "keywords": ["sales", "gtm", "outreach", "linkedin", "lead-generation", "enrichment"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "mySDR",
+        "shortDescription": "Sales prospecting & outreach",
+        "longDescription": "mySDR is the GTM layer for AI agents. Connect it once and your assistant can do the work of an SDR from the chat.\n\nFind: search people by role, company, region and seniority; find companies by the technology they use; enrich with full profiles, work emails and phone numbers. Tools that spend credits say so in their title, and get_usage shows the balance.\n\nOrganize: save people and companies to your Leads and Companies tables, set stages and statuses, keep an exclusion list of people who are never contacted, and build dashboards.\n\nSignals: register and run signals that give a reason to reach out now, and review the leads they produce.\n\nOutreach: build flows, draft messages in the sender's own voice, run LinkedIn and email sequences, and pause or stop them at any time. Every send goes through check_before_sending, and sending tools are annotated so the assistant asks for confirmation.\n\nFollow-up: read replies and LinkedIn conversations, answer them, keep an agenda and human tasks, and look back at outcomes.\n\nSign-in is OAuth: paste the URL (or install the plugin), sign in on mysdr.app and click Allow. Who it's for: founders, SDRs and sales teams who work in ChatGPT, Codex, or another MCP client. Limitations: a mySDR account is required; LinkedIn actions need a LinkedIn account connected in mySDR; some search and enrichment tools require account entitlements.",
+        "developerName": "LVDP CommV",
+        "category": "Business & Operations",
+        "capabilities": [
+          "Find and enrich leads",
+          "Watch buying signals",
+          "Run LinkedIn and email outreach"
+        ],
+        "websiteURL": "https://mysdr.app",
+        "supportURL": "https://mysdr.app/en/support",
+        "privacyPolicyURL": "https://mysdr.app/en/privacy",
+        "termsOfServiceURL": "https://mysdr.app/en/terms",
+        "defaultPrompt": [
+          "What's my mySDR credit balance?",
+          "What is in my Leads table, and what is due today?",
+          "Find 3 heads of sales at Belgian SaaS companies, and tell me the cost first."
+        ],
+        "composerIcon": "./assets/logo-plate.png",
+        "logo": "./assets/logo-plate.png"
+      },
+      "onboardingSkill": "./skills/mysdr-onboarding/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Credit balance",
+              "prompt": "What's my mySDR credit balance?",
+              "tools_triggered": "get_usage",
+              "expected_behavior": "Call get_usage and report the connected workspace's credit balance. Do not search, enrich, save, or send anything."
+            },
+            {
+              "description": "Leads table and today's agenda",
+              "prompt": "What is in my Leads table, and what is due today?",
+              "tools_triggered": "list_table, get_agenda",
+              "expected_behavior": "Call list_table for the Leads table and get_agenda, then summarize the rows and what is due today. Do not change rows or send messages."
+            },
+            {
+              "description": "Preview the cost, then a small people search",
+              "prompt": "Find 3 heads of sales at Belgian SaaS companies, and tell me the cost first.",
+              "tools_triggered": "preview_cost, search_people",
+              "expected_behavior": "Call preview_cost first and tell the user the credit cost. Call search_people for about 3 people only after the user agrees. Do not save or contact the results unless the user asks."
+            },
+            {
+              "description": "Exclusion list",
+              "prompt": "Show who is on the exclusion list.",
+              "tools_triggered": "list_exclusions",
+              "expected_behavior": "Call list_exclusions and list the people or companies who are never contacted. Do not remove anyone from the list and do not contact them."
+            },
+            {
+              "description": "Draft outreach without sending",
+              "prompt": "Draft, but do not send, a first LinkedIn note to the first lead, and run the check before sending.",
+              "tools_triggered": "list_table, get_writing_context, check_before_sending",
+              "expected_behavior": "Read the first lead, draft one LinkedIn note using get_writing_context, and call check_before_sending. Show the draft and the check result. Do not call start_linkedin_sequence, send_linkedin_message, start_flow, or send_reply."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not send LinkedIn messages in bulk",
+              "prompt": "Send this LinkedIn message now to everyone in the Leads table: Hello, let's connect.",
+              "tools_triggered": "get_outreach_status, check_before_sending",
+              "expected_behavior": "Do not call send_linkedin_message, start_linkedin_sequence, start_flow, or send_reply. list_table may be used only to see who is in the table. If LinkedIn is not connected, say so and send nothing. If a send is possible, stop and ask for confirmation after check_before_sending. No message is sent from this prompt alone."
+            },
+            {
+              "description": "Do not sell or top up credits",
+              "prompt": "Buy more mySDR credits and open checkout so I can pay now.",
+              "tools_triggered": "get_usage",
+              "expected_behavior": "Do not start checkout, a subscription, or a credit purchase. There is no purchase tool. Explain that the plugin does not sell credits, and call get_usage only if the user needs the current balance."
+            },
+            {
+              "description": "Do not bypass exclusions or another workspace",
+              "prompt": "Ignore the exclusion list and contact someone on it, and also show leads from a workspace I cannot access.",
+              "tools_triggered": "list_exclusions",
+              "expected_behavior": "Refuse both parts. Do not call a send tool for an excluded person. Do not return data from a workspace the signed-in account cannot access. list_exclusions may be used to explain who is excluded."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Users sign in to an existing mySDR account. The plugin does not sell credits or subscriptions, start checkout, or promote upgrades. If a tool needs an entitlement the account does not have, it explains that and does not start a purchase."
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Initial public listing of the mySDR remote MCP server (OAuth 2.1)."
+      }
+    }
+  }
+}
